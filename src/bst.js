@@ -247,6 +247,34 @@ var BST = function () {
                 }
                 
                 return parent.key;
+            },
+            
+            deleteNode = function (node) {
+                // Deleting an empty root
+                if (node.parent === null) {
+                    node.key = null;
+                    node.value = null;
+                }
+
+                // Deleting a leaf
+                if (node.leftChild === null && node.rightChild === null) {
+                    if (node.parent.leftChild === node) {
+                        node.parent.leftChild = null;
+                        node = null;
+                    } else if (node.parent.rightChild === node) {
+                        node.parent.rightChild = null;
+                        node = null;
+                    } else { // orphaned node
+                        node = null;
+                    }
+                }
+
+                // Deleting a node with one child
+                // Remove the node and replace it with its child
+                if ((node.leftChild === null && node.rightChild !== null) ||
+                    (node.leftChild !== null && node.rightChild === null)) {
+                    
+                }
             };
             
         return {
